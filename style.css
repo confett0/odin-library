@@ -1,0 +1,16 @@
+body {
+    width: 100%;
+}
+
+.book-wrap {
+    margin: auto;
+    padding: 30px;
+    width: 1000px;
+}
+
+.book {
+    border: 1px solid #252525;
+    border-radius: 10px;
+    width: 150px;
+    height: 200px;
+}
