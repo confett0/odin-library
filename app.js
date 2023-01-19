@@ -5,7 +5,7 @@ let myLibrary = [
   { title: "Book2", author: "Pac", pages: 298, read: false }
 ];
 
-const createDiv = () => {
+const createBook = (book) => {
   const bookDiv = document.createElement("div");
   bookDiv.classList.add("book");
   const bookTitle = document.createElement("div");
@@ -16,9 +16,16 @@ const createDiv = () => {
   bookPages.classList.add("book-pages");
   document.querySelector(".book-wrap").appendChild(bookDiv);
   bookDiv.append(bookTitle, bookAuthor, bookPages);
+  bookTitle.textContent = book.title;
+  bookAuthor.textContent = book.author;
+  bookPages.textContent = book.pages;
 }
 
-createDiv();
+const renderBooks = (arr) => {
+  arr.map((book) => createBook(book));
+}
+
+renderBooks(myLibrary);
 
 function Book(title, author, pages, read) {
 
