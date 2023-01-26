@@ -14,11 +14,14 @@ function addBookToLibrary(title, author, pages, read) {
 
 // Add default books
 
+
+
 addBookToLibrary("Alice in Wonderland", "Lewis Carroll", 198, true);
 
 const createBook = (book) => {
   const bookDiv = document.createElement("div");
   bookDiv.classList.add("book");
+  bookDiv.setAttribute("id", myLibrary.indexOf(book));
 
   const bookTitle = document.createElement("div");
   bookTitle.classList.add("book-title");
@@ -29,18 +32,28 @@ const createBook = (book) => {
   const bookPages = document.createElement("div");
   bookPages.classList.add("book-pages");
   
+  const delButton = document.createElement("div");
+  delButton.classList.add("del-button");
+  
   document.querySelector(".book-wrap").appendChild(bookDiv);
-  bookDiv.append(bookTitle, bookAuthor, bookPages);
+  bookDiv.append(bookTitle, bookAuthor, bookPages, delButton);
 
   bookTitle.textContent = book.title;
   bookAuthor.textContent = book.author;
   bookPages.textContent = `${book.pages} pages`;
+  delButton.textContent = "X";
+
+  delButton.addEventListener("click", () => {
+    myLibrary.splice(myLibrary.indexOf(book),1);
+    renderBooks();
+  })
 }
 
 const renderBooks = () => {
   document.querySelector(".book-wrap").innerHTML = "";
   myLibrary.map((book) => createBook(book));
 }
+
 
 // Get new book data from form
 
