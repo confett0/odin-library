@@ -7,23 +7,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Odin Library</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
     <script src="app.js" defer></script>
 </head>
 
 <body>
-    <div class="book-wrap"></div>
-
-    <form id="book-form">
-        <label for="book-title">Title</label>
-        <input type="text" name="title" id="book-title">
-        <label for="book-author">Author</label>
-        <input type="text" name="author" id="book-author">
-        <label for="pages">Number of pages</label>
-        <input type="number" name="pages" id="pages">
-        <label for="read">Have you read this book?</label>
-        <input type="checkbox" name="read" id="read">
-        <input type="submit" id="submit" value="Submit">
-    </form>
+    <header>
+        <h1>my<span class="bold">little</span>library</h1>
+    </header>
+    <main>
+        <button type="button" class="open-modal">+ Add new book</button>
+        <div class="modal">
+            <form id="book-form">
+                <div class="close-button"></div>
+                <div class="form-row">
+                    <label for="book-title">Title</label>
+                    <input type="text" name="title" id="book-title" required>
+                </div>
+                <div class="form-row">
+                    <label for="book-author">Author</label>
+                    <input type="text" name="author" id="book-author" required>
+                </div>
+                <div class="form-row">
+                    <label for="pages">Number of pages</label>
+                    <input type="number" name="pages" id="pages" required>
+                </div>
+                <div class="check-input"><label for="read">Have you read this book?</label>
+                    <input type="checkbox" name="read" id="read">
+                </div>
+                <input type="submit" id="submit" value="Submit">
+            </form>
+        </div>
+        <div class="book-wrap"></div>
+    </main>
+    <footer><p>Copyright © <a href="https://github.com/confett0" target="_blank">confetto</a></p></footer>
 </body>
 
 </html>

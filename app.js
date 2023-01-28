@@ -1,4 +1,4 @@
-const myLibrary = [];
+const myLibrary = [{title: "The Secret Garden", author: "Frances Hodgson Burnett", pages: 331, read: false}, {title: "Alice's Adventures in Wonderland", author: "Lewis Carroll", pages: 320, read: true}, {title: "Little Women", author: "Louisa May Alcott", pages: 449, read: true},];
 
 function Book(title, author, pages, read) {
 
@@ -12,22 +12,19 @@ function addBookToLibrary(title, author, pages, read) {
   myLibrary.push(new Book(title, author, pages, read))
 }
 
-// Add default books
-
-addBookToLibrary("Alice in Wonderland", "Lewis Carroll", 198, true);
 
 const createBook = (book) => {
   const bookDiv = document.createElement("div");
   bookDiv.classList.add("book");
   bookDiv.id = myLibrary.indexOf(book);
 
-  const bookTitle = document.createElement("div");
+  const bookTitle = document.createElement("h1");
   bookTitle.classList.add("book-title");
 
-  const bookAuthor = document.createElement("div");
+  const bookAuthor = document.createElement("h2");
   bookAuthor.classList.add("book-author");
 
-  const bookPages = document.createElement("div");
+  const bookPages = document.createElement("p");
   bookPages.classList.add("book-pages");
 
   const readCheckbox = document.createElement("input");
@@ -37,7 +34,7 @@ const createBook = (book) => {
 
   const label = document.createElement("label");
   label.htmlFor = "read-checkbox";
-  label.textContent = "Read?"
+  label.textContent = "Read? "
   
   const delButton = document.createElement("div");
   delButton.classList.add("del-button");
@@ -48,7 +45,6 @@ const createBook = (book) => {
   bookTitle.textContent = book.title;
   bookAuthor.textContent = book.author;
   bookPages.textContent = `${book.pages} pages`;
-  delButton.textContent = "X";
 
   if (book.read === true) {
     readCheckbox.checked = true;
@@ -101,5 +97,14 @@ form.onsubmit = (e) => {
   form.reset();
   renderBooks();
 }
+
+// Modal
+
+const modal = document.querySelector(".modal");
+const openModal = document.querySelector(".open-modal");
+const closeButton = document.querySelector(".close-button");
+
+openModal.addEventListener("click", () => modal.style.display = "block");
+closeButton.addEventListener("click", () => modal.style.display = "none");
 
 renderBooks();
