@@ -1,17 +1,36 @@
-const myLibrary = [{title: "The Secret Garden", author: "Frances Hodgson Burnett", pages: 331, read: false}, {title: "Alice's Adventures in Wonderland", author: "Lewis Carroll", pages: 320, read: true}, {title: "Little Women", author: "Louisa May Alcott", pages: 449, read: true},];
+const myLibrary = [
+  {
+    title: "The Secret Garden",
+    author: "Frances Hodgson Burnett",
+    pages: 331,
+    read: false,
+  },
+  {
+    title: "Alice's Adventures in Wonderland",
+    author: "Lewis Carroll",
+    pages: 320,
+    read: true,
+  },
+  {
+    title: "Little Women",
+    author: "Louisa May Alcott",
+    pages: 449,
+    read: true,
+  },
+];
 
-function Book(title, author, pages, read) {
-
-    this.title = title,
-    this.author = author,
-    this.pages = pages,
-    this.read = read
-};
-
-function addBookToLibrary(title, author, pages, read) {
-  myLibrary.push(new Book(title, author, pages, read))
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
 }
 
+function addBookToLibrary(title, author, pages, read) {
+  myLibrary.push(new Book(title, author, pages, read));
+}
 
 const createBook = (book) => {
   const bookDiv = document.createElement("div");
@@ -34,13 +53,20 @@ const createBook = (book) => {
 
   const label = document.createElement("label");
   label.htmlFor = "read-checkbox";
-  label.textContent = "Read? "
-  
+  label.textContent = "Read? ";
+
   const delButton = document.createElement("div");
   delButton.classList.add("del-button");
-  
+
   document.querySelector(".book-wrap").appendChild(bookDiv);
-  bookDiv.append(bookTitle, bookAuthor, bookPages, label, readCheckbox, delButton);
+  bookDiv.append(
+    bookTitle,
+    bookAuthor,
+    bookPages,
+    label,
+    readCheckbox,
+    delButton
+  );
 
   bookTitle.textContent = book.title;
   bookAuthor.textContent = book.author;
@@ -58,18 +84,18 @@ const createBook = (book) => {
     } else {
       book.read = false;
     }
-  })
+  });
 
   delButton.addEventListener("click", () => {
-    myLibrary.splice(myLibrary.indexOf(book),1);
+    myLibrary.splice(myLibrary.indexOf(book), 1);
     renderBooks();
-  })
-}
+  });
+};
 
 const renderBooks = () => {
   document.querySelector(".book-wrap").innerHTML = "";
   myLibrary.map((book) => createBook(book));
-}
+};
 
 // Get new book data from form
 
@@ -87,16 +113,11 @@ form.onsubmit = (e) => {
   }
 
   formData.forEach((value, key) => (newBook[key] = value));
-  
-  addBookToLibrary(
-    newBook.title,
-    newBook.author,
-    newBook.pages,
-    newBook.read
-  );
+
+  addBookToLibrary(newBook.title, newBook.author, newBook.pages, newBook.read);
   form.reset();
   renderBooks();
-}
+};
 
 // Modal
 
@@ -104,7 +125,7 @@ const modal = document.querySelector(".modal");
 const openModal = document.querySelector(".open-modal");
 const closeButton = document.querySelector(".close-button");
 
-openModal.addEventListener("click", () => modal.style.display = "block");
-closeButton.addEventListener("click", () => modal.style.display = "none");
+openModal.addEventListener("click", () => (modal.style.display = "block"));
+closeButton.addEventListener("click", () => (modal.style.display = "none"));
 
 renderBooks();
